@@ -9,8 +9,10 @@ pub struct User {
 
     #[serde(rename = "Id")]
     pub id: Option<u64>,
-    #[serde(rename = "Username")]
+    #[serde(rename = "name")]
     pub username: Option<String>,
+    #[serde(rename = "displayName")]
+    pub displayname: Option<String>,
     #[serde(rename = "AvatarFinal")]
     pub avatarfinal: Option<bool>,
     #[serde(rename = "AvatarUri")]
