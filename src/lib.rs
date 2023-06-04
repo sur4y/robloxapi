@@ -13,11 +13,12 @@ pub use users::UserBuilder;
 use reqwest::Method;
 
 // STATIC URLS
-pub(crate) const BASE: &str = "https://api.roblox.com";
+//pub(crate) const BASE: &str = "https://api.roblox.com";
 #[allow(dead_code)]
 pub(crate) const AUTH: &str = "https://auth.roblox.com/v1/account/pin/unlock";
 #[allow(dead_code)]
 pub(crate) const ACCOUNT: &str = "https://accountinformation.roblox.com/v1";
+pub(crate) const FRIENDS: &str = "https://friends.roblox.com/v1/";
 #[allow(dead_code)]
 pub(crate) const MESSAGES: &str = "https://privatemessages.roblox.com/v1";
 pub(crate) const USER: &str = "https://users.roblox.com/v1";

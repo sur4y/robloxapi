@@ -49,7 +49,7 @@ impl UserBuilder for u64 {
     async fn new(self, client: &mut crate::Https) -> User {
         let user: User = client
             .client
-            .request(Method::GET, &format!("{}/users/{}", crate::BASE, self))
+            .request(Method::GET, &format!("{}/users/{}", crate::USER, self))
             .send()
             .await
             .expect("Failed to get user info from base")
@@ -98,7 +98,7 @@ impl User {
                     Method::GET,
                     &format!(
                         "{}/users/{}/friends{}",
-                        crate::BASE,
+                        crate::USER,
                         self.id.unwrap(),
                         page_string
                     ),
@@ -124,7 +124,7 @@ impl User {
                         Method::GET,
                         &format!(
                             "{}/users/{}/friends{}",
-                            crate::BASE,
+                            crate::FRIENDS,
                             self.id.unwrap(),
                             page_string
                         ),
@@ -146,26 +146,26 @@ impl User {
         }
     }
 
-    /// Check if user has asset, may require cookie
-    pub async fn has_asset(&mut self, asset_id: u64) -> bool {
-        self.client
-            .as_mut()
-            .unwrap()
-            .client
-            .request(
-                Method::GET,
-                &format!(
-                    "{}/ownership/hasasset?userId={}&assetId={}",
-                    crate::BASE,
-                    self.id.unwrap(),
-                    asset_id
-                ),
-            )
-            .send()
-            .await
-            .expect("Failed to get ownership info")
-            .json::<bool>()
-            .await
-            .expect("Failed to get ownership json")
-    }
+    // /// Check if user has asset, may require cookie
+    // pub async fn has_asset(&mut self, asset_id: u64) -> bool {
+    //     self.client
+    //         .as_mut()
+    //         .unwrap()
+    //         .client
+    //         .request(
+    //             Method::GET,
+    //             &format!(
+    //                 "{}/ownership/hasasset?userId={}&assetId={}",
+    //                 crate::BASE,
+    //                 self.id.unwrap(),
+    //                 asset_id
+    //             ),
+    //         )
+    //         .send()
+    //         .await
+    //         .expect("Failed to get ownership info")
+    //         .json::<bool>()
+    //         .await
+    //         .expect("Failed to get ownership json")
+    // }
 }
