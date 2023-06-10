@@ -48,6 +48,7 @@ impl Client {
                 reqwest::Client::new()
                     .post("https://auth.roblox.com/v2/logout")
                     .header("content-length", "0")
+                    .header("cookie", &(".ROBLOSECURITY=".to_owned() + cookie))
                     .send()
                     .await
                     .expect("Failed to get X-CSRF-TOKEN")
