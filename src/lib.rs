@@ -81,11 +81,11 @@ impl Client {
     pub async fn current_user(self: &mut Client) -> User {
         let data = self
             .session
-            .request::<serde_json::Value>(Method::GET, "https://www.roblox.com/mobileapi/userinfo")
+            .request::<serde_json::Value>(Method::GET, "https://users.roblox.com/v1/users/authenticated")
             .await
             .expect("Failed to get user info");
 
-        let builder = data.get("UserID").unwrap().as_u64().unwrap();
+        let builder = data.get("id").unwrap().as_u64().unwrap();
         UserBuilder::new(builder, &mut self.session).await
     }
 
