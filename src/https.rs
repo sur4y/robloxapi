@@ -125,7 +125,7 @@ impl Https {
     async fn validate_cookie(&mut self) {
         let req = self
             .client
-            .request(Method::GET, "https://www.roblox.com/mobileapi/userinfo")
+            .request(Method::GET, "https://users.roblox.com/v1/users/authenticated")
             .send()
             .await
             .expect("Failed to get user info");
